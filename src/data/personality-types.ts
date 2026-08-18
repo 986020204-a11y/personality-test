@@ -31,7 +31,7 @@ export const PERSONALITY_TYPES: Record<Dimension, PersonalityType> = {
     traits: ["Versatile", "Intuitive", "Balanced", "Bold"],
     accent: "#10b981",
   },
-  openness: {
+  explorer: {
     id: "the-explorer",
     title: "The Explorer",
     subtitle: "New is your favorite word.",
@@ -40,7 +40,7 @@ export const PERSONALITY_TYPES: Record<Dimension, PersonalityType> = {
     traits: ["Curious", "Adventurous", "Open", "Playful"],
     accent: "#f59e0b",
   },
-  safety: {
+  anchor: {
     id: "the-anchor",
     title: "The Anchor",
     subtitle: "You make trust feel like home.",

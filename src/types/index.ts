@@ -5,8 +5,8 @@ export type Dimension =
   | "dominant"
   | "submissive"
   | "switch"
-  | "openness"
-  | "safety";
+  | "explorer"
+  | "anchor";
 
 // A single question. Each question contributes to exactly one dimension.
 export interface Question {

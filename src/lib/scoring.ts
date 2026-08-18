@@ -16,8 +16,8 @@ const ALL_DIMENSIONS: Dimension[] = [
   "dominant",
   "submissive",
   "switch",
-  "openness",
-  "safety",
+  "explorer",
+  "anchor",
 ];
 
 /**
