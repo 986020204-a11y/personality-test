@@ -12,64 +12,64 @@ export const DIMENSION_LABELS: Record<Dimension, string> = {
 // Short descriptions for each dimension, shown on the result page.
 export const DIMENSION_DESCRIPTIONS: Record<Dimension, string> = {
   dominant:
-    "A drive to lead, protect, and take responsibility for the direction of intimate connection.",
+    "Leadership, guidance, and confidence in intimate connection.",
   submissive:
-    "A desire to trust, surrender, and feel held within a caring dynamic.",
+    "Trust, surrender, and deep connection through following.",
   switch:
-    "Comfort moving between leading and following depending on mood, energy, and partner.",
+    "Flexibility, balance, and adaptability across roles.",
   explorer:
-    "Curiosity and willingness to discover new desires, roles, and experiences together.",
+    "Curiosity, adventure, and openness to new experiences.",
   anchor:
-    "Deep emphasis on consent, emotional safety, communication, and aftercare.",
+    "Safety, communication, and trust as the foundation of intimacy.",
 };
 
 // 36-question Intimacy Archetype Test.
-// 8 dom, 7 sub, 7 switch, 7 explorer, 7 anchor = 36 total.
+// 7 dominant, 7 submissive, 7 switch, 7 explorer, 8 anchor = 36 total.
 // All items are positively keyed toward their dimension.
 export const QUESTIONS: Question[] = [
-  // --- Dominant (8) ---
-  { id: 1, category: "Presence", text: "I naturally take charge when a partner seems unsure of what they want.", dimension: "dominant" },
-  { id: 2, category: "Presence", text: "I enjoy planning and setting the tone for an intimate experience.", dimension: "dominant" },
-  { id: 3, category: "Presence", text: "Being responsible for my partner's pleasure feels rewarding, not heavy.", dimension: "dominant" },
-  { id: 4, category: "Presence", text: "I feel most connected when I'm guiding the pace and direction.", dimension: "dominant" },
-  { id: 5, category: "Presence", text: "I like knowing my partner trusts me enough to follow my lead.", dimension: "dominant" },
-  { id: 6, category: "Presence", text: "Clear instructions come naturally to me when I sense a partner wants them.", dimension: "dominant" },
-  { id: 7, category: "Presence", text: "I feel energized, not drained, when I hold the decision-making space.", dimension: "dominant" },
-  { id: 8, category: "Presence", text: "Protecting someone's vulnerability brings out the best in me.", dimension: "dominant" },
+  // --- Dominant (7): Leadership · Guidance · Confidence ---
+  { id: 1, category: "Leadership", text: "I enjoy taking the lead during intimate experiences.", dimension: "dominant" },
+  { id: 2, category: "Leadership", text: "I feel confident making decisions when my partner trusts my guidance.", dimension: "dominant" },
+  { id: 3, category: "Leadership", text: "I enjoy creating structure, rules, or boundaries for shared experiences.", dimension: "dominant" },
+  { id: 4, category: "Leadership", text: "Being responsible for my partner's comfort and experience feels meaningful to me.", dimension: "dominant" },
+  { id: 5, category: "Leadership", text: "I enjoy guiding my partner through new experiences.", dimension: "dominant" },
+  { id: 6, category: "Leadership", text: "I like setting the pace and atmosphere during intimate moments.", dimension: "dominant" },
+  { id: 7, category: "Leadership", text: "I believe leadership in intimacy requires care, awareness, and responsibility.", dimension: "dominant" },
 
-  // --- Submissive (7) ---
-  { id: 9, category: "Surrender", text: "I feel safest when someone I trust makes the decisions for us.", dimension: "submissive" },
-  { id: 10, category: "Surrender", text: "Letting go of control during intimacy helps me relax deeply.", dimension: "submissive" },
-  { id: 11, category: "Surrender", text: "I enjoy being guided rather than choosing the next step myself.", dimension: "submissive" },
-  { id: 12, category: "Surrender", text: "Receiving focused attention and direction makes me feel desired.", dimension: "submissive" },
-  { id: 13, category: "Surrender", text: "Vulnerability feels like strength when I'm with the right person.", dimension: "submissive" },
-  { id: 14, category: "Surrender", text: "I find freedom in not having to be in charge.", dimension: "submissive" },
-  { id: 15, category: "Surrender", text: "Being taken care of emotionally and physically is deeply fulfilling.", dimension: "submissive" },
+  // --- Submissive (7): Trust · Surrender · Connection ---
+  { id: 8, category: "Trust", text: "I enjoy relaxing and allowing a trusted partner to take the lead.", dimension: "submissive" },
+  { id: 9, category: "Trust", text: "Following clear guidance from a partner feels comfortable to me.", dimension: "submissive" },
+  { id: 10, category: "Trust", text: "I enjoy the feeling of being protected and cared for.", dimension: "submissive" },
+  { id: 11, category: "Trust", text: "Trusting someone deeply allows me to feel more connected.", dimension: "submissive" },
+  { id: 12, category: "Trust", text: "Letting go of control can feel freeing and rewarding.", dimension: "submissive" },
+  { id: 13, category: "Trust", text: "I appreciate partners who confidently guide me.", dimension: "submissive" },
+  { id: 14, category: "Trust", text: "I enjoy focusing on my partner's direction and intentions.", dimension: "submissive" },
 
-  // --- Switch (7) ---
-  { id: 16, category: "Fluidity", text: "My ideal role shifts depending on my mood and who I'm with.", dimension: "switch" },
-  { id: 17, category: "Fluidity", text: "I get bored if I always play the same part in a dynamic.", dimension: "switch" },
-  { id: 18, category: "Fluidity", text: "I enjoy surprising a partner by shifting energy mid-experience.", dimension: "switch" },
-  { id: 19, category: "Fluidity", text: "I can read when someone needs me to lead or follow, and I adjust.", dimension: "switch" },
-  { id: 20, category: "Fluidity", text: "Taking turns in control keeps a connection alive for me.", dimension: "switch" },
-  { id: 21, category: "Fluidity", text: "I don't identify with just one role — range is part of who I am.", dimension: "switch" },
-  { id: 22, category: "Fluidity", text: "Flexibility in intimacy feels more honest than picking a fixed lane.", dimension: "switch" },
+  // --- Switch (7): Flexibility · Balance · Adaptability ---
+  { id: 15, category: "Flexibility", text: "My preferred role changes depending on my mood and my partner.", dimension: "switch" },
+  { id: 16, category: "Flexibility", text: "I enjoy experiencing both leading and following.", dimension: "switch" },
+  { id: 17, category: "Flexibility", text: "I do not feel limited to one specific role.", dimension: "switch" },
+  { id: 18, category: "Flexibility", text: "I naturally adjust my behavior based on the situation.", dimension: "switch" },
+  { id: 19, category: "Flexibility", text: "I enjoy exploring different sides of my personality.", dimension: "switch" },
+  { id: 20, category: "Flexibility", text: "I can comfortably move between giving and receiving control.", dimension: "switch" },
+  { id: 21, category: "Flexibility", text: "Variety and flexibility make intimate experiences more interesting.", dimension: "switch" },
 
-  // --- Explorer (7) ---
-  { id: 23, category: "Discovery", text: "Trying something I've never done before excites me more than it worries me.", dimension: "explorer" },
-  { id: 24, category: "Discovery", text: "I love asking 'what if' and turning fantasies into conversations.", dimension: "explorer" },
-  { id: 25, category: "Discovery", text: "I seek out new sensations, dynamics, and experiences with enthusiasm.", dimension: "explorer" },
-  { id: 26, category: "Discovery", text: "Learning what turns someone on is one of my favorite forms of intimacy.", dimension: "explorer" },
-  { id: 27, category: "Discovery", text: "I feel most alive when a partner and I co-create something we've never tried.", dimension: "explorer" },
-  { id: 28, category: "Discovery", text: "Curiosity about desire is a core part of how I connect.", dimension: "explorer" },
-  { id: 29, category: "Discovery", text: "A predictable routine in intimacy leaves me wanting more.", dimension: "explorer" },
+  // --- Explorer (7): Curiosity · Adventure · Openness ---
+  { id: 22, category: "Curiosity", text: "I am curious about discovering new experiences with a partner.", dimension: "explorer" },
+  { id: 23, category: "Curiosity", text: "I enjoy exploring ideas that are different from what I already know.", dimension: "explorer" },
+  { id: 24, category: "Curiosity", text: "Trying something unfamiliar can be exciting for me.", dimension: "explorer" },
+  { id: 25, category: "Curiosity", text: "I enjoy discovering new aspects of myself through experiences.", dimension: "explorer" },
+  { id: 26, category: "Curiosity", text: "I like exploring different roles, emotions, and dynamics.", dimension: "explorer" },
+  { id: 27, category: "Curiosity", text: "I believe curiosity helps create deeper connections.", dimension: "explorer" },
+  { id: 28, category: "Curiosity", text: "I enjoy stepping outside my comfort zone with someone I trust.", dimension: "explorer" },
 
-  // --- Anchor (7) ---
-  { id: 30, category: "Safety", text: "I need clear, enthusiastic consent before anything new begins.", dimension: "anchor" },
-  { id: 31, category: "Safety", text: "Checking in on my partner's emotional state is second nature to me.", dimension: "anchor" },
-  { id: 32, category: "Safety", text: "I'd rather pause and talk than push through discomfort.", dimension: "anchor" },
-  { id: 33, category: "Safety", text: "Aftercare — holding, talking, reconnecting — matters as much as the experience itself.", dimension: "anchor" },
-  { id: 34, category: "Safety", text: "I believe trust is built through honoring limits, not testing them.", dimension: "anchor" },
-  { id: 35, category: "Safety", text: "Emotional safety is the foundation everything else depends on.", dimension: "anchor" },
-  { id: 36, category: "Safety", text: "Setting and respecting boundaries makes intimacy deeper, not smaller.", dimension: "anchor" },
+  // --- Anchor (8): Safety · Communication · Trust ---
+  { id: 29, category: "Safety", text: "Clear communication is essential before exploring intimacy.", dimension: "anchor" },
+  { id: 30, category: "Safety", text: "I value discussing boundaries and expectations openly.", dimension: "anchor" },
+  { id: 31, category: "Safety", text: "Making sure my partner feels safe is very important to me.", dimension: "anchor" },
+  { id: 32, category: "Safety", text: "I believe trust is the foundation of a strong connection.", dimension: "anchor" },
+  { id: 33, category: "Safety", text: "I appreciate partners who communicate honestly about their feelings.", dimension: "anchor" },
+  { id: 34, category: "Safety", text: "Aftercare and emotional connection are important parts of intimacy.", dimension: "anchor" },
+  { id: 35, category: "Safety", text: "Respecting boundaries creates a better experience for everyone.", dimension: "anchor" },
+  { id: 36, category: "Safety", text: "I prefer relationships where both partners feel understood and respected.", dimension: "anchor" },
 ];
