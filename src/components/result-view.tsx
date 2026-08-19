@@ -39,7 +39,11 @@ export function ResultView() {
 
   const result: PersonalityResult | null = useMemo(() => {
     if (!answers || answers.length === 0) return null;
-    return calculateResult(QUESTIONS, answers);
+    try {
+      return calculateResult(QUESTIONS, answers);
+    } catch {
+      return null;
+    }
   }, [answers]);
 
   if (answers === null) {

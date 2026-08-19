@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useTest } from "@/hooks/use-test";
 import { ANSWER_OPTIONS } from "@/data/answer-options";
+import { saveAnswers } from "@/lib/storage";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
@@ -29,6 +30,11 @@ export function TestFlow() {
 
   const handleNext = () => {
     if (test.isLast) {
+      // Explicitly persist the current answers to localStorage before
+      // navigating. This prevents a race condition where the async useEffect
+      // persistence in useTest hasn't committed yet when the soft navigation
+      // starts unmounting the component tree.
+      saveAnswers(test.answers);
       router.push("/result");
     } else {
       test.goNext();
