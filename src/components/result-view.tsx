@@ -15,6 +15,19 @@ import {
 } from "@/lib/share";
 import type { Answer, PersonalityResult } from "@/types";
 
+// Per-archetype accent palettes for a richer visual identity.
+const ACCENT_MAP: Record<string, { primary: string; glow: string }> = {
+  "the-guide": { primary: "#e85d2c", glow: "#e85d2c" },
+  "the-trusting": { primary: "#2563eb", glow: "#2563eb" },
+  "the-adaptable": { primary: "#7c3aed", glow: "#7c3aed" },
+  "the-explorer": { primary: "#0891b2", glow: "#0891b2" },
+  "the-anchor": { primary: "#0d9488", glow: "#0d9488" },
+};
+
+function getAccent(typeId: string) {
+  return ACCENT_MAP[typeId] ?? { primary: "#7c3aed", glow: "#7c3aed" };
+}
+
 export function ResultView() {
   const router = useRouter();
   const [answers, setAnswers] = useState<Answer[] | null>(null);
@@ -52,6 +65,7 @@ export function ResultView() {
   }
 
   const { primaryType, scores } = result;
+  const accent = getAccent(primaryType.id);
   const shareText = buildShareText(primaryType);
 
   const handleShare = () => {
@@ -73,102 +87,106 @@ export function ResultView() {
 
   return (
     <main className="flex flex-1 flex-col bg-background">
-      {/* Hero section */}
-      <section
-        className="relative overflow-hidden"
-        style={{
-          background: `linear-gradient(135deg, ${primaryType.accent}18 0%, ${primaryType.accent}08 50%, transparent 100%)`,
-        }}
-      >
-        <div className="mx-auto w-full max-w-lg px-5 pb-10 pt-14 text-center sm:pt-20 sm:pb-14">
+      {/* ===== HERO ===== */}
+      <section className="relative overflow-hidden">
+        <div
+          className="absolute inset-0"
+          style={{
+            background: [
+              `radial-gradient(ellipse 80% 60% at 50% 0%, ${accent.glow}22 0%, transparent 70%)`,
+              `linear-gradient(to bottom, ${accent.primary}0a, transparent 60%)`,
+            ].join(", "),
+          }}
+        />
+        <div className="relative mx-auto w-full max-w-md px-5 pb-8 pt-12 text-center sm:pt-16 sm:pb-10">
           <div className="animate-question-in">
-            {/* Accent badge */}
-            <div
-              className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl sm:h-20 sm:w-20"
-              style={{ backgroundColor: `${primaryType.accent}20` }}
+            <p
+              className="text-xs font-bold uppercase tracking-[0.2em]"
+              style={{ color: accent.primary }}
             >
-              <div
-                className="h-8 w-8 rounded-lg sm:h-10 sm:w-10"
-                style={{ backgroundColor: primaryType.accent }}
-              />
-            </div>
-
-            <p className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
-              Your archetype
+              Your Archetype
             </p>
+
             <h1
-              className="mt-2 text-4xl font-bold tracking-tight sm:text-5xl"
-              style={{ color: primaryType.accent }}
+              className="mt-3 text-[2.5rem] font-extrabold leading-[1.1] tracking-tight sm:text-6xl"
+              style={{ color: accent.primary }}
             >
               {primaryType.title}
             </h1>
-            <p className="mt-3 text-lg text-muted-foreground sm:text-xl">
+
+            <p className="mt-3 text-base font-medium text-foreground/70 sm:text-lg">
               {primaryType.subtitle}
             </p>
+
+            <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+              {primaryType.traits.map((trait) => (
+                <span
+                  key={trait}
+                  className="rounded-md px-3 py-1 text-xs font-bold uppercase tracking-wide"
+                  style={{
+                    color: accent.primary,
+                    backgroundColor: `${accent.primary}14`,
+                    border: `1.5px solid ${accent.primary}30`,
+                  }}
+                >
+                  {trait}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Main content */}
-      <div className="mx-auto w-full max-w-lg px-5 py-8 sm:py-12">
-        <div className="animate-question-in" style={{ animationDelay: "0.08s" }}>
-          {/* Traits */}
-          <div className="flex flex-wrap justify-center gap-2">
-            {primaryType.traits.map((trait) => (
-              <span
-                key={trait}
-                className="rounded-full border px-4 py-1.5 text-sm font-medium"
-                style={{
-                  borderColor: `${primaryType.accent}40`,
-                  color: primaryType.accent,
-                  backgroundColor: `${primaryType.accent}08`,
-                }}
-              >
-                {trait}
-              </span>
-            ))}
-          </div>
+      {/* ===== BODY ===== */}
+      <div className="mx-auto w-full max-w-md px-5 pb-10 pt-4 sm:pt-6 sm:pb-14">
+        <div className="animate-question-in" style={{ animationDelay: "0.06s" }}>
 
-          {/* Description card */}
-          <div className="mt-8 rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8">
-            <p className="text-base leading-relaxed text-card-foreground sm:text-lg">
+          {/* Description */}
+          <div
+            className="rounded-xl border p-5 sm:p-6"
+            style={{ borderColor: `${accent.primary}20` }}
+          >
+            <p className="text-[0.95rem] leading-relaxed text-foreground/85 sm:text-base">
               {primaryType.description}
             </p>
           </div>
 
-          {/* Score breakdown */}
-          <div className="mt-8 rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8">
-            <h2 className="text-lg font-semibold tracking-tight">
-              Your dimension profile
+          {/* ===== DIMENSION PROFILE ===== */}
+          <div className="mt-7">
+            <h2 className="text-base font-bold tracking-tight text-foreground">
+              Dimension Profile
             </h2>
-            <p className="mt-1 text-sm text-muted-foreground">
-              How you scored across all five dimensions.
+            <p className="mt-0.5 text-xs text-muted-foreground">
+              Your score across all five dimensions
             </p>
-            <div className="mt-6 flex flex-col gap-4">
+            <div className="mt-4 flex flex-col gap-3.5">
               {scores.map((score) => (
                 <ScoreBar
                   key={score.dimension}
                   score={score}
                   highlighted={score.dimension === result.dominantDimension}
-                  accent={primaryType.accent}
+                  accent={accent.primary}
                 />
               ))}
             </div>
           </div>
 
-          {/* Share section */}
-          <div className="mt-8 rounded-2xl border border-border bg-card p-6 text-center shadow-sm sm:p-8">
-            <h2 className="text-lg font-semibold tracking-tight">
+          {/* ===== SHARE ===== */}
+          <div
+            className="mt-7 rounded-xl p-5 text-center sm:p-6"
+            style={{ backgroundColor: `${accent.primary}08`, border: `1px solid ${accent.primary}18` }}
+          >
+            <p className="text-sm font-semibold text-foreground">
               Share your result
-            </h2>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Let others discover their archetype too.
             </p>
-            <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:justify-center">
+            <p className="mt-1 text-xs text-muted-foreground">
+              Let others discover their archetype
+            </p>
+            <div className="mt-4 flex flex-col gap-2.5 sm:flex-row sm:justify-center">
               <Button
                 onClick={handleShare}
-                className="w-full sm:w-auto"
-                style={{ backgroundColor: primaryType.accent }}
+                className="w-full text-white sm:w-auto"
+                style={{ backgroundColor: accent.primary }}
               >
                 Share on X
               </Button>
@@ -183,39 +201,38 @@ export function ResultView() {
             </div>
           </div>
 
-          {/* Premium Report CTA */}
+          {/* ===== PREMIUM CTA ===== */}
           <div
-            className="mt-8 overflow-hidden rounded-2xl p-6 text-center sm:p-8"
+            className="mt-7 overflow-hidden rounded-xl p-5 text-center sm:p-6"
             style={{
-              background: `linear-gradient(135deg, ${primaryType.accent} 0%, ${primaryType.accent}cc 100%)`,
+              background: `linear-gradient(145deg, ${accent.primary}f0 0%, ${accent.primary}d0 100%)`,
             }}
           >
-            <h2 className="text-xl font-bold text-white sm:text-2xl">
+            <p className="text-lg font-bold text-white sm:text-xl">
               Unlock Your Full Report
-            </h2>
-            <p className="mx-auto mt-2 max-w-sm text-sm text-white/80 sm:text-base">
-              Get a detailed breakdown of your intimacy profile, compatibility insights, and personalized guidance.
             </p>
-            <Button
-              variant="outline"
-              className="mt-5 border-white/30 bg-white/10 text-white hover:bg-white/20"
-            >
-              Coming soon
-            </Button>
+            <p className="mx-auto mt-1.5 max-w-xs text-xs leading-relaxed text-white/75 sm:text-sm">
+              Detailed breakdown, compatibility insights, and personalized guidance for your intimacy profile.
+            </p>
+            <div className="mt-4">
+              <span className="inline-block rounded-lg border border-white/25 bg-white/10 px-5 py-2 text-sm font-semibold text-white">
+                Coming soon
+              </span>
+            </div>
           </div>
 
-          {/* Navigation */}
-          <div className="mt-8 flex flex-col gap-3 pb-4 sm:flex-row sm:justify-center">
+          {/* ===== NAV ===== */}
+          <div className="mt-7 flex gap-3">
             <Button
               variant="outline"
               onClick={handleRetake}
-              className="w-full sm:w-auto"
+              className="flex-1"
             >
               Retake test
             </Button>
             <Link
               href="/"
-              className={buttonVariants({ variant: "ghost", className: "w-full sm:w-auto" })}
+              className={buttonVariants({ variant: "ghost", className: "flex-1" })}
             >
               Home
             </Link>

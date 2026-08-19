@@ -9,36 +9,38 @@ interface ScoreBarProps {
 
 export function ScoreBar({ score, highlighted, accent }: ScoreBarProps) {
   return (
-    <div>
-      <div className="mb-1.5 flex items-baseline justify-between">
+    <div className="group">
+      <div className="mb-1 flex items-baseline justify-between">
         <span
           className={cn(
-            "text-sm font-medium",
-            highlighted ? "text-foreground" : "text-muted-foreground"
+            "text-sm",
+            highlighted ? "font-bold text-foreground" : "font-medium text-muted-foreground"
           )}
         >
           {score.label}
         </span>
         <span
           className={cn(
-            "text-sm font-semibold tabular-nums",
-            highlighted ? "text-foreground" : "text-muted-foreground"
+            "text-xs tabular-nums",
+            highlighted ? "font-bold" : "font-medium text-muted-foreground"
           )}
+          style={highlighted ? { color: accent } : undefined}
         >
           {score.percentage}%
         </span>
       </div>
-      <div className="h-2.5 w-full overflow-hidden rounded-full bg-secondary">
+      <div
+        className={cn(
+          "h-2 w-full overflow-hidden rounded-full",
+          highlighted ? "bg-secondary" : "bg-secondary/60"
+        )}
+      >
         <div
-          className={cn(
-            "h-full rounded-full transition-all duration-700 ease-out",
-            !highlighted && "opacity-50"
-          )}
+          className="h-full rounded-full transition-all duration-700 ease-out"
           style={{
             width: `${score.percentage}%`,
-            backgroundColor: highlighted
-              ? accent ?? "var(--primary)"
-              : "var(--muted-foreground)",
+            backgroundColor: highlighted ? accent : "var(--muted-foreground)",
+            opacity: highlighted ? 1 : 0.35,
           }}
         />
       </div>
