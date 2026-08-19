@@ -252,7 +252,7 @@ export function ResultView() {
                 Premium Report
               </p>
               <p className="mt-1 text-lg font-bold text-white sm:text-xl">
-                Unlock Your Full Profile
+                Go Deeper With Premium
               </p>
               <p className="mx-auto mt-2 max-w-xs text-xs leading-relaxed text-white/70 sm:text-sm">
                 Your personalized report includes:
@@ -265,10 +265,14 @@ export function ResultView() {
                   </div>
                 ))}
               </div>
-              <div className="mt-5">
-                <span className="inline-block rounded-lg border border-white/20 bg-white/10 px-5 py-2 text-sm font-semibold text-white">
-                  Coming soon
-                </span>
+              <div className="mt-5 flex flex-col items-center gap-2">
+                <Link
+                  href="/premium"
+                  className="inline-block rounded-lg border border-white/20 bg-white/15 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/25"
+                >
+                  Learn more
+                </Link>
+                <p className="text-[0.65rem] text-white/50">Coming soon</p>
               </div>
             </div>
           </div>
