@@ -4,10 +4,10 @@ import type { DimensionScore } from "@/types";
 interface ScoreBarProps {
   score: DimensionScore;
   highlighted?: boolean;
+  accent?: string;
 }
 
-// A single labeled horizontal bar for one dimension score.
-export function ScoreBar({ score, highlighted }: ScoreBarProps) {
+export function ScoreBar({ score, highlighted, accent }: ScoreBarProps) {
   return (
     <div>
       <div className="mb-1.5 flex items-baseline justify-between">
@@ -19,17 +19,27 @@ export function ScoreBar({ score, highlighted }: ScoreBarProps) {
         >
           {score.label}
         </span>
-        <span className="text-sm tabular-nums text-muted-foreground">
+        <span
+          className={cn(
+            "text-sm font-semibold tabular-nums",
+            highlighted ? "text-foreground" : "text-muted-foreground"
+          )}
+        >
           {score.percentage}%
         </span>
       </div>
-      <div className="h-3 w-full overflow-hidden rounded-full bg-secondary">
+      <div className="h-2.5 w-full overflow-hidden rounded-full bg-secondary">
         <div
           className={cn(
-            "h-full rounded-full transition-all",
-            highlighted ? "bg-primary" : "bg-muted-foreground/50"
+            "h-full rounded-full transition-all duration-700 ease-out",
+            !highlighted && "opacity-50"
           )}
-          style={{ width: `${score.percentage}%` }}
+          style={{
+            width: `${score.percentage}%`,
+            backgroundColor: highlighted
+              ? accent ?? "var(--primary)"
+              : "var(--muted-foreground)",
+          }}
         />
       </div>
     </div>
